@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="add image"
+        android:icon="@drawable/ic_action_image"
+        app:showAsAction="always"
+        android:id="@+id/addImage"/>
+
+    <item
+        android:title="export pdf"
+        android:icon="@drawable/pdf"
+        app:showAsAction="always"
+        android:id="@+id/exportPdf"/>
+    <item
+        android:title="export word"
+        android:icon="@drawable/word"
+        app:showAsAction="always"
+        android:id="@+id/exportWord"/>
+
+    <item
+        android:title="export pdf"
+        android:icon="@drawable/ic_action_share"
+        app:showAsAction="always"
+        android:id="@+id/txtShare"/>
+
+    <!--<item
+    android:title="setting"
+    android:id="@+id/setting"
+    />-->
+
+</menu>
