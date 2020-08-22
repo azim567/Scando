@@ -29,8 +29,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        android:text="Result"
-                        android:textColor="@color/colorPrimary"></TextView>
+                        android:textColor="#000"
+                        android:text="Extracted Text"
+                        android:fontFamily="@font/comfortaa_medium"></TextView>
 
 
                     <EditText
@@ -41,7 +42,7 @@
                         android:background="@null"
                         android:textColor="#000"
                         android:id="@+id/textResult"
-                        android:hint="Click + button to Add images"></EditText>
+                        android:hint="Extract text from Image"></EditText>
 
                 </LinearLayout>
 
@@ -49,7 +50,8 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -62,7 +64,8 @@
                         android:textSize="20sp"
                         android:text="Image Preview"
                         android:padding="5sp"
-                        android:textColor="@color/colorPrimary"></TextView>
+                        android:fontFamily="@font/comfortaa_medium"
+                        android:textColor="#000"></TextView>
 
 
                     <ImageView
@@ -85,6 +88,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="search on google"
+        android:textColor="#fff"
+        android:background="@drawable/btn_back"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/comfortaa_bold"
         android:id="@+id/googlebtn"/>
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.thecodingshef.newdemoapp;
+package com.thecodingshef.scando;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,8 +19,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +44,9 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import hotchemi.android.rate.AppRate;
+import hotchemi.android.rate.OnClickButtonListener;
+
 public class MainActivity extends AppCompatActivity {
 
     Button googleSearch;
@@ -65,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AppRate.with(this)
+                .setInstallDays(0)
+                .setLaunchTimes(3)
+                .setRemindInterval(2)
+                .monitor();
+
+        AppRate.showRateDialogIfMeetsConditions(MainActivity.this);
+
+
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle("Scando");
 
@@ -72,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
         resulttxt=findViewById(R.id.textResult);
         ImageClic=findViewById(R.id.ivImge);
         googleSearch=findViewById(R.id.googlebtn);
+
+
 
         //camera Permission
         cameraPermission=new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -108,9 +121,9 @@ public class MainActivity extends AppCompatActivity {
             exportPdf();
         }
 
-        if(id==R.id.exportWord){
+       /* if(id==R.id.exportWord){
 
-        }
+        }*/
         if(id==R.id.txtShare){
 
             ShareText();
@@ -358,5 +371,26 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, ""+error, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.scando_round);
+        builder.setMessage("Do you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

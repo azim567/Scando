@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "com.thecodingshef.newdemoapp"
+        applicationId "com.thecodingshef.scando"
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
@@ -30,9 +30,11 @@ dependencies {
 
     implementation 'androidx.cardview:cardview:1.0.0'
 
-     // Cropping
+    // Cropping
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
 
     //Google Api
     implementation 'com.google.android.gms:play-services-vision:16.2.0'
+
+    implementation 'com.github.hotchemi:android-rate:1.0.1'
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_back"
+    tools:context=".Splash">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SCANDO"
+        android:id="@+id/maintxt"
+        android:gravity="center"
+        android:textSize="70dp"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="220dp"
+        android:fontFamily="@font/comfortaa_bold"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan | Clip and Search"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        app:layout_constraintTop_toBottomOf="@+id/maintxt"
+        android:layout_marginBottom="220dp"
+        android:fontFamily="@font/comfortaa_light"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Powered by TheCodingShef"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:textColor="#fff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/comfortaa_light"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

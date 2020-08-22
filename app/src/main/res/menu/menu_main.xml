@@ -13,12 +13,12 @@
         android:icon="@drawable/pdf"
         app:showAsAction="always"
         android:id="@+id/exportPdf"/>
-    <item
+   <!-- <item
         android:title="export word"
         android:icon="@drawable/word"
         app:showAsAction="always"
         android:id="@+id/exportWord"/>
-
+-->
     <item
         android:title="export pdf"
         android:icon="@drawable/ic_action_share"

@@ -1,4 +1,4 @@
-package com.thecodingshef.newdemoapp;
+package com.thecodingshef.scando;
 
 import org.junit.Test;
 
