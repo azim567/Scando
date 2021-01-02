@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
+   <!-- <item
         android:title="add image"
         android:icon="@drawable/ic_action_image"
         app:showAsAction="always"
         android:id="@+id/addImage"/>
-
+-->
     <item
-        android:title="export pdf"
+        android:title="Export pdf"
         android:icon="@drawable/pdf"
-        app:showAsAction="always"
-        android:id="@+id/exportPdf"/>
+        android:id="@+id/exportPdf"
+        />
    <!-- <item
         android:title="export word"
         android:icon="@drawable/word"
@@ -20,14 +20,21 @@
         android:id="@+id/exportWord"/>
 -->
     <item
-        android:title="export pdf"
+        android:title="share text"
+
         android:icon="@drawable/ic_action_share"
         app:showAsAction="always"
         android:id="@+id/txtShare"/>
 
-    <!--<item
-    android:title="setting"
-    android:id="@+id/setting"
-    />-->
+   <item
+    android:title="Share App"
+    android:id="@+id/shareApp" />
+
+    <item
+        android:title="Rate us"
+        android:id="@+id/rateus" />
+    <item
+        android:title="Join us on youtube"
+        android:id="@+id/youtube" />
 
 </menu>

@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout1"
+        android:padding="10dp"
+        android:layout_marginBottom="45dp">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,21 +24,31 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:elevation="8dp"
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    >
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        android:textColor="#000"
-                        android:text="Extracted Text"
-                        android:fontFamily="@font/comfortaa_medium"></TextView>
+                        android:textColor="#fff"
+                        android:text="Tap here to scan Image"
+                        android:id="@+id/scanImgtxt"
+                        android:background="#0F2859"
+                        android:gravity="center"
+                        android:paddingBottom="2dp"
+                        android:fontFamily="@font/comfortaa_bold"></TextView>
 
 
                     <EditText
@@ -41,8 +58,11 @@
                         android:padding="5dp"
                         android:background="@null"
                         android:textColor="#000"
-                        android:id="@+id/textResult"
-                        android:hint="Extract text from Image"></EditText>
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:id="@+id/textResult"/>
 
                 </LinearLayout>
 
@@ -51,7 +71,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,6 +84,8 @@
                         android:textSize="20sp"
                         android:text="Image Preview"
                         android:padding="5sp"
+                        android:id="@+id/imgprev_txt"
+                        android:visibility="gone"
                         android:fontFamily="@font/comfortaa_medium"
                         android:textColor="#000"></TextView>
 
@@ -83,17 +105,22 @@
 
     </ScrollView>
 
+    </RelativeLayout>
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:text="search on google"
         android:textColor="#fff"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/btn_back"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/comfortaa_bold"
         android:id="@+id/googlebtn"/>
+
 
 </RelativeLayout>

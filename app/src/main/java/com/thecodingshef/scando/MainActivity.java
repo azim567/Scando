@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +52,8 @@ import hotchemi.android.rate.OnClickButtonListener;
 public class MainActivity extends AppCompatActivity {
 
     Button googleSearch;
-    TextView resulttxt;
+    TextView scanImageText,imgprev_txt;
+    EditText extractedtxt;
     ImageView ImageClic;
     private static final int CAMERA_REQUEST_CODE=200;
     private static final int STORAGE_REQUEST_CODE=400;
@@ -80,10 +83,20 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle("Scando");
 
 
-        resulttxt=findViewById(R.id.textResult);
+        extractedtxt=findViewById(R.id.textResult);
         ImageClic=findViewById(R.id.ivImge);
+        imgprev_txt=findViewById(R.id.imgprev_txt);
         googleSearch=findViewById(R.id.googlebtn);
+        scanImageText=findViewById(R.id.scanImgtxt);
 
+
+        scanImageText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowImageImportDialog();
+
+            }
+        });
 
 
         //camera Permission
@@ -96,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/#q=" + resulttxt.getText())));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q="+extractedtxt.getText().toString())));
             }
         });
     }
@@ -113,33 +126,59 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         int id=item.getItemId();
-        if(id==R.id.addImage){
-              ShowImageImportDialog();
-        }
+
         if(id==R.id.exportPdf){
 
             exportPdf();
         }
 
-       /* if(id==R.id.exportWord){
-
-        }*/
         if(id==R.id.txtShare){
 
             ShareText();
 
         }
-        /*if(id==R.id.setting){
-            Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
-        }*/
+        if(id==R.id.shareApp){
+            shareApp();
+        }
+        if(id==R.id.rateus){
+            rateUs();
+        }
+
+        if(id==R.id.youtube){
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/c/TheCodingShef?sub_confirmation=1")));
+
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void rateUs() {
+        try{
+            startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id="+getPackageName())));
+        }
+        catch (ActivityNotFoundException e){
+            startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
+        }
+    }
+
+    private void shareApp() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Scando");
+            String shareMessage= "\nI recommend you to use this application\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "choose one"));
+        } catch(Exception e) {
+            //e.toString();
+        }
     }
 
     private void ShareText() {
 
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, resulttxt.getText().toString());
+        intent.putExtra(Intent.EXTRA_TEXT, extractedtxt.getText().toString());
         intent.setType("text/plain");
         startActivity(intent);
     }
@@ -169,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             PdfWriter.getInstance(document, new FileOutputStream(filepath));
             document.open();
-            String txt = resulttxt.getText().toString();
+            String txt = extractedtxt.getText().toString();
             document.addAuthor("TheCodingShef");
             document.add(new Paragraph(txt, smallBold));
             document.close();
@@ -337,6 +376,9 @@ public class MainActivity extends AppCompatActivity {
 
                 //set image to imageview
                 ImageClic.setImageURI(resulturi);
+                imgprev_txt.setVisibility(View.VISIBLE);
+                imgprev_txt.setText("Image Preview");
+
 
                 //get Drawable bitmap for text recognition
                 BitmapDrawable bitmapDrawable=(BitmapDrawable)ImageClic.getDrawable();
@@ -360,7 +402,7 @@ public class MainActivity extends AppCompatActivity {
                         sb.append("\n");
 
                     }
-                    resulttxt.setText(sb.toString());
+                    extractedtxt.setText(sb.toString());
 
                   //  startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/#q=" + sb.toString())));
                 }
